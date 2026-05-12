@@ -7,548 +7,196 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --sand: #f5ede0;
-      --ocean: #2a6f7f;
-      --deep: #1a3f48;
-      --leaf: #5a7a4a;
-      --sky: #d4eaf0;
-      --warm: #e8c99a;
-      --text: #2c2c2c;
-      --light: #faf7f3;
+      --sand: #f5ede0; --ocean: #2a6f7f; --deep: #1a3f48; --leaf: #5a7a4a;
+      --sky: #d4eaf0; --warm: #e8c99a; --text: #2c2c2c; --light: #faf7f3;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--light); overflow-x: hidden; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      background: var(--light);
-      overflow-x: hidden;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2.5rem;
-      background: rgba(250,247,243,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(42,111,127,0.12);
-      transition: box-shadow 0.3s;
-    }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2.5rem; background: rgba(250,247,243,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(42,111,127,0.12); transition: box-shadow 0.3s; }
     nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--ocean);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--ocean); text-decoration: none; }
     .nav-logo span { color: var(--leaf); font-style: italic; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      opacity: 0.7;
-      transition: opacity 0.2s, color 0.2s;
-    }
+    .nav-links { display: flex; gap: 1.4rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.7; transition: opacity 0.2s, color 0.2s; }
     .nav-links a:hover { opacity: 1; color: var(--ocean); }
 
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-top: 70px;
-    }
-    .hero-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 5rem 4rem 5rem 5rem;
-      background: var(--light);
-      animation: fadeUp 0.9s ease both;
-    }
-    .hero-eyebrow {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ocean);
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 2rem;
-      height: 1px;
-      background: var(--ocean);
-    }
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
-      line-height: 1.1;
-      color: var(--deep);
-      margin-bottom: 1.5rem;
-    }
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 70px; }
+    .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem 5rem 5rem; background: var(--light); animation: fadeUp 0.9s ease both; }
+    .hero-eyebrow { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--ocean); }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1; color: var(--deep); margin-bottom: 1.5rem; }
     h1 em { color: var(--ocean); font-style: italic; }
-    .hero-desc {
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: #555;
-      max-width: 420px;
-      margin-bottom: 2.5rem;
-    }
-    .hero-stats {
-      display: flex;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-      padding: 1.5rem 0;
-      border-top: 1px solid rgba(42,111,127,0.15);
-      border-bottom: 1px solid rgba(42,111,127,0.15);
-    }
+    .hero-desc { font-size: 1.05rem; line-height: 1.75; color: #555; max-width: 420px; margin-bottom: 2.5rem; }
+    .hero-stats { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; padding: 1.5rem 0; border-top: 1px solid rgba(42,111,127,0.15); border-bottom: 1px solid rgba(42,111,127,0.15); flex-wrap: wrap; }
     .stat { text-align: center; }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--ocean);
-      display: block;
-      line-height: 1;
-      margin-bottom: 0.2rem;
-    }
-    .stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #888; }
-    .btn {
-      display: inline-block;
-      padding: 0.9rem 2rem;
-      background: var(--ocean);
-      color: white;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: background 0.2s, transform 0.2s;
-      align-self: flex-start;
-    }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--ocean); display: block; line-height: 1; margin-bottom: 0.2rem; }
+    .stat-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: #888; }
+    .btn { display: inline-block; padding: 0.9rem 2rem; background: var(--ocean); color: white; text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 2px; transition: background 0.2s, transform 0.2s; align-self: flex-start; }
     .btn:hover { background: var(--deep); transform: translateY(-1px); }
-    .btn-outline {
-      background: transparent;
-      color: var(--ocean);
-      border: 1.5px solid var(--ocean);
-      margin-left: 1rem;
-    }
+    .btn-outline { background: transparent; color: var(--ocean); border: 1.5px solid var(--ocean); margin-left: 1rem; }
     .btn-outline:hover { background: var(--ocean); color: white; }
-
-    .hero-image {
-      position: relative;
-      overflow: hidden;
-      animation: fadeIn 1.1s ease both 0.2s;
-    }
-    .hero-image-main {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 6s ease;
-    }
-    .hero-image:hover .hero-image-main { transform: scale(1.04); }
-    .hero-badge {
-      position: absolute;
-      bottom: 2.5rem;
-      left: -1.5rem;
-      background: white;
-      padding: 1.2rem 1.5rem;
-      border-radius: 2px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
-      max-width: 200px;
-    }
+    .hero-image { position: relative; overflow: hidden; animation: fadeIn 1.1s ease both 0.2s; }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; min-height: 400px; transition: transform 6s ease; }
+    .hero-image:hover img { transform: scale(1.04); }
+    .hero-badge { position: absolute; bottom: 2.5rem; left: -1.5rem; background: white; padding: 1.2rem 1.5rem; border-radius: 2px; box-shadow: 0 8px 40px rgba(0,0,0,0.12); max-width: 200px; }
     .hero-badge-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
     .hero-badge-text { font-size: 0.82rem; color: #555; line-height: 1.4; }
     .hero-badge-text strong { color: var(--deep); display: block; font-size: 0.9rem; }
 
-    /* PHOTO GRID */
-    .photos {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 280px 280px;
-      gap: 6px;
-      margin: 6px;
-    }
-    .photo-cell {
-      overflow: hidden;
-      background: var(--sky);
-      position: relative;
-    }
+    .photos { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 280px 280px; gap: 6px; margin: 6px; }
+    .photo-cell { overflow: hidden; background: var(--sky); position: relative; }
     .photo-cell:first-child { grid-row: 1 / 3; }
-    .photo-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--sky) 0%, var(--sand) 100%);
-      color: var(--ocean);
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      opacity: 0.7;
-    }
-    .photo-placeholder span { font-size: 2rem; }
-    .photo-label {
-      position: absolute;
-      bottom: 0.8rem;
-      left: 0.8rem;
-      background: rgba(255,255,255,0.9);
-      padding: 0.3rem 0.7rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--deep);
-      border-radius: 1px;
-    }
+    .photo-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+    .photo-cell:hover img { transform: scale(1.04); }
+    .photo-label { position: absolute; bottom: 0.8rem; left: 0.8rem; background: rgba(255,255,255,0.9); padding: 0.3rem 0.7rem; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--deep); border-radius: 1px; }
 
-    /* FEATURES */
     .section { padding: 6rem 5rem; }
-    .section-header {
-      margin-bottom: 3.5rem;
-      max-width: 600px;
-    }
-    .section-eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ocean);
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .section-eyebrow::before {
-      content: '';
-      display: block;
-      width: 1.5rem;
-      height: 1px;
-      background: var(--ocean);
-    }
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      color: var(--deep);
-      line-height: 1.2;
-    }
+    .section-header { margin-bottom: 3.5rem; max-width: 600px; }
+    .section-eyebrow { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
+    .section-eyebrow::before { content: ''; display: block; width: 1.5rem; height: 1px; background: var(--ocean); }
+    h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); color: var(--deep); line-height: 1.2; }
     h2 em { color: var(--ocean); font-style: italic; }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
-    }
-    .feature-card {
-      padding: 2rem;
-      border: 1px solid rgba(42,111,127,0.12);
-      border-radius: 2px;
-      background: white;
-      transition: transform 0.25s, box-shadow 0.25s;
-      position: relative;
-      overflow: hidden;
-    }
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px;
-      height: 0;
-      background: var(--ocean);
-      transition: height 0.3s;
-    }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .feature-card { padding: 2rem; border: 1px solid rgba(42,111,127,0.12); border-radius: 2px; background: white; transition: transform 0.25s, box-shadow 0.25s; position: relative; overflow: hidden; }
+    .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--ocean); transition: height 0.3s; }
     .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
     .feature-card:hover::before { height: 100%; }
     .feature-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .feature-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      color: var(--deep);
-      margin-bottom: 0.6rem;
-    }
-    .feature-desc { font-size: 0.9rem; line-height: 1.65; color: #666; }
+    .feature-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--deep); margin-bottom: 0.6rem; }
+    .feature-desc { font-size: 0.88rem; line-height: 1.65; color: #666; }
 
-    /* AMENITIES */
-    .amenities-section {
-      background: var(--deep);
-      color: white;
-      padding: 6rem 5rem;
-    }
+    .bedrooms-section { background: var(--sand); padding: 6rem 5rem; }
+    .bedrooms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .bedroom-card { background: white; border-radius: 2px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.25s, box-shadow 0.25s; }
+    .bedroom-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .bedroom-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .bedroom-card-body { padding: 1.2rem; }
+    .bedroom-card-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--deep); margin-bottom: 0.4rem; }
+    .bedroom-card-desc { font-size: 0.82rem; color: #666; line-height: 1.5; }
+
+    .amenities-section { background: var(--deep); color: white; padding: 6rem 5rem; }
     .amenities-section .section-eyebrow { color: var(--warm); }
     .amenities-section .section-eyebrow::before { background: var(--warm); }
     .amenities-section h2 { color: white; }
     .amenities-section h2 em { color: var(--warm); }
-    .amenities-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-top: 3rem;
-    }
-    .amenity {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      padding: 1rem 1.2rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 2px;
-      font-size: 0.9rem;
-      transition: background 0.2s;
-    }
+    .amenities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; }
+    .amenity { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; font-size: 0.9rem; transition: background 0.2s; }
     .amenity:hover { background: rgba(255,255,255,0.1); }
     .amenity-icon { font-size: 1.2rem; flex-shrink: 0; }
 
-    /* LOCATION */
-    .location-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 500px;
-    }
-    .location-text {
-      padding: 6rem 4rem 6rem 5rem;
-      background: var(--sand);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .location-facts {
-      margin-top: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .location-fact {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem;
-      background: white;
-      border-radius: 2px;
-    }
+    .outdoor-section { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin: 6px; height: 380px; }
+    .outdoor-cell { overflow: hidden; position: relative; }
+    .outdoor-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+    .outdoor-cell:hover img { transform: scale(1.04); }
+    .outdoor-label { position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.9); padding: 0.4rem 0.8rem; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--deep); border-radius: 1px; }
+
+    .location-section { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+    .location-text { padding: 6rem 4rem 6rem 5rem; background: var(--sand); display: flex; flex-direction: column; justify-content: center; }
+    .location-facts { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .location-fact { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: white; border-radius: 2px; }
     .location-fact-icon { font-size: 1.4rem; flex-shrink: 0; }
     .location-fact-text strong { display: block; color: var(--deep); margin-bottom: 0.2rem; font-size: 0.95rem; }
     .location-fact-text span { font-size: 0.85rem; color: #666; }
-    .location-map {
-      background: linear-gradient(135deg, var(--sky) 0%, #b8dde8 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .map-placeholder {
-      text-align: center;
-      color: var(--ocean);
-      padding: 2rem;
-    }
-    .map-placeholder span { font-size: 4rem; display: block; margin-bottom: 1rem; }
-    .map-placeholder p { font-size: 0.9rem; opacity: 0.7; }
-    .map-placeholder a {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.6rem 1.4rem;
-      background: var(--ocean);
-      color: white;
-      text-decoration: none;
-      font-size: 0.82rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      border-radius: 2px;
-    }
+    .location-image { overflow: hidden; }
+    .location-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* CALENDAR */
-    .calendar-section {
-      padding: 6rem 5rem;
-      background: var(--light);
-    }
-    .calendar-container {
-      margin-top: 2.5rem;
-      border: 1px solid rgba(42,111,127,0.15);
-      border-radius: 2px;
-      overflow: hidden;
-      background: white;
-    }
-    .calendar-notice {
-      padding: 1.5rem 2rem;
-      background: var(--sky);
-      font-size: 0.88rem;
-      color: var(--deep);
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      border-bottom: 1px solid rgba(42,111,127,0.12);
-    }
-    /* PASTE YOUR GOOGLE CALENDAR EMBED CODE INSIDE .calendar-embed below */
-    .calendar-embed {
-      padding: 2rem;
-      min-height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #fafafa;
-      flex-direction: column;
-      gap: 1rem;
-      color: #aaa;
-      font-size: 0.9rem;
-      text-align: center;
-    }
-    .calendar-embed span { font-size: 3rem; }
+    .views-strip { display: grid; grid-template-columns: 1fr 1fr; height: 420px; gap: 6px; margin: 6px; }
+    .view-cell { overflow: hidden; position: relative; }
+    .view-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+    .view-cell:hover img { transform: scale(1.04); }
+    .view-label { position: absolute; bottom: 1rem; left: 1rem; background: rgba(0,0,0,0.45); color: white; padding: 0.4rem 0.8rem; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 1px; }
 
-    /* CONTACT */
-    .contact-section {
-      background: var(--ocean);
-      color: white;
-      padding: 6rem 5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
+    .rates-section { padding: 6rem 5rem; background: var(--light); }
+    .rates-table-wrap { margin-top: 2.5rem; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 2px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    thead { background: var(--deep); color: white; }
+    thead th { padding: 1.1rem 1.5rem; text-align: left; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+    tbody tr { border-bottom: 1px solid rgba(42,111,127,0.08); transition: background 0.2s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--sky); }
+    tbody td { padding: 1.1rem 1.5rem; font-size: 0.92rem; color: var(--text); }
+    tbody td:first-child { font-weight: 500; color: var(--deep); }
+    .rate-highlight { background: rgba(42,111,127,0.04); }
+    .rate-price { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--ocean); font-weight: 700; }
+    .rates-notes { margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .rates-note { padding: 1.5rem; background: white; border: 1px solid rgba(42,111,127,0.12); border-radius: 2px; border-left: 3px solid var(--ocean); }
+    .rates-note-icon { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .rates-note h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--deep); margin-bottom: 0.4rem; }
+    .rates-note p { font-size: 0.85rem; color: #666; line-height: 1.55; }
+
+    .calendar-section { padding: 6rem 5rem; background: var(--sand); }
+    .calendar-container { margin-top: 2.5rem; border: 1px solid rgba(42,111,127,0.15); border-radius: 2px; overflow: hidden; background: white; }
+    .calendar-notice { padding: 1.5rem 2rem; background: var(--sky); font-size: 0.88rem; color: var(--deep); display: flex; align-items: center; gap: 0.8rem; border-bottom: 1px solid rgba(42,111,127,0.12); }
+    .calendar-embed { padding: 1rem; background: #fafafa; }
+    .calendar-embed iframe { display: block; }
+
+    .contact-section { background: var(--ocean); color: white; padding: 6rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .contact-text h2 { color: white; margin-bottom: 1rem; }
     .contact-text h2 em { color: var(--warm); }
     .contact-text p { opacity: 0.85; line-height: 1.75; font-size: 0.95rem; max-width: 360px; }
     .contact-details { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.9rem;
-    }
+    .contact-item { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; }
     .contact-item a { color: white; text-decoration: none; opacity: 0.9; }
     .contact-item a:hover { opacity: 1; text-decoration: underline; }
-    .contact-form {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 2.5rem;
-      border-radius: 2px;
-    }
-    .contact-form h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      margin-bottom: 1.5rem;
-      color: white;
-    }
+    .contact-form { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 2.5rem; border-radius: 2px; }
+    .contact-form h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; color: white; }
     .form-group { margin-bottom: 1.2rem; }
-    .form-group label {
-      display: block;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
-      opacity: 0.7;
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 2px;
-      color: white;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--warm);
-      background: rgba(255,255,255,0.15);
-    }
+    .form-group label { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; opacity: 0.7; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.8rem 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; color: white; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; transition: border-color 0.2s; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--warm); background: rgba(255,255,255,0.15); }
     .form-group select option { color: var(--deep); background: white; }
     .form-group textarea { resize: vertical; min-height: 100px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .btn-submit {
-      width: 100%;
-      padding: 1rem;
-      background: var(--warm);
-      color: var(--deep);
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-      margin-top: 0.5rem;
-    }
+    .btn-submit { width: 100%; padding: 1rem; background: var(--warm); color: var(--deep); border: none; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px; cursor: pointer; transition: background 0.2s, transform 0.2s; margin-top: 0.5rem; }
     .btn-submit:hover { background: #f0d8b0; transform: translateY(-1px); }
 
-    /* FOOTER */
-    footer {
-      background: var(--deep);
-      color: rgba(255,255,255,0.5);
-      padding: 2rem 5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.82rem;
-    }
+    footer { background: var(--deep); color: rgba(255,255,255,0.5); padding: 2rem 5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; }
     footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
     footer a:hover { color: white; }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      color: white;
-      font-size: 1.1rem;
-    }
+    .footer-logo { font-family: 'Playfair Display', serif; color: white; font-size: 1.1rem; }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .bedrooms-grid { grid-template-columns: repeat(2, 1fr); }
+      .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+      .rates-notes { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-text { padding: 3rem 2rem; }
-      .hero-image { height: 50vw; min-height: 300px; }
+      .hero-image { height: 60vw; min-height: 280px; }
       .hero-badge { display: none; }
       .features-grid { grid-template-columns: 1fr 1fr; }
-      .amenities-grid { grid-template-columns: 1fr 1fr; }
       .location-section { grid-template-columns: 1fr; }
-      .location-map { min-height: 300px; }
+      .location-image { height: 300px; }
       .contact-section { grid-template-columns: 1fr; gap: 3rem; }
-      .section { padding: 4rem 2rem; }
-      .amenities-section { padding: 4rem 2rem; }
-      .contact-section { padding: 4rem 2rem; }
-      .calendar-section { padding: 4rem 2rem; }
+      .section, .amenities-section, .contact-section, .calendar-section, .rates-section, .bedrooms-section { padding: 4rem 2rem; }
       .location-text { padding: 4rem 2rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
       nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.2rem; }
+      .nav-links { gap: 0.8rem; }
+      .nav-links a { font-size: 0.72rem; }
       .photos { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-      .photo-cell:first-child { grid-row: auto; grid-column: 1 / 3; }
+      .photo-cell:first-child { grid-row: auto; grid-column: 1 / 3; height: 260px; }
+      .photo-cell { height: 200px; }
       .form-row { grid-template-columns: 1fr; }
+      .outdoor-section { grid-template-columns: 1fr; height: auto; }
+      .outdoor-cell { height: 250px; }
+      .views-strip { grid-template-columns: 1fr; height: auto; }
+      .view-cell { height: 280px; }
+      .rates-notes { grid-template-columns: 1fr; }
+      .bedrooms-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .bedrooms-grid { grid-template-columns: 1fr; }
+      .amenities-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -558,8 +206,10 @@
   <a href="#" class="nav-logo">Bike <span>&</span> Beach</a>
   <ul class="nav-links">
     <li><a href="#features">The Home</a></li>
+    <li><a href="#bedrooms">Bedrooms</a></li>
     <li><a href="#amenities">Amenities</a></li>
     <li><a href="#location">Location</a></li>
+    <li><a href="#rates">Rates</a></li>
     <li><a href="#availability">Availability</a></li>
     <li><a href="#contact">Enquire</a></li>
   </ul>
@@ -570,27 +220,12 @@
   <div class="hero-text">
     <p class="hero-eyebrow">Kaiteriteri, Nelson-Tasman</p>
     <h1>Where the Trail <em>meets</em> the Tide</h1>
-    <p class="hero-desc">
-      A light, modern retreat steps from golden sands and world-class mountain biking. 
-      Bike &amp; Beach is your perfect base for adventure, relaxation, and everything in between.
-    </p>
+    <p class="hero-desc">A light, modern retreat steps from golden sands and world-class mountain biking. Bike &amp; Beach is your perfect base for adventure, relaxation, and everything in between.</p>
     <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-num">4</span>
-        <span class="stat-label">Bedrooms</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">9</span>
-        <span class="stat-label">Sleeps</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">2</span>
-        <span class="stat-label">Bathrooms</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">5</span>
-        <span class="stat-label">Min to Beach</span>
-      </div>
+      <div class="stat"><span class="stat-num">4</span><span class="stat-label">Bedrooms</span></div>
+      <div class="stat"><span class="stat-num">9</span><span class="stat-label">Sleeps</span></div>
+      <div class="stat"><span class="stat-num">2</span><span class="stat-label">Bathrooms</span></div>
+      <div class="stat"><span class="stat-num">5</span><span class="stat-label">Min to Beach</span></div>
     </div>
     <div>
       <a href="#availability" class="btn">Check Availability</a>
@@ -598,19 +233,10 @@
     </div>
   </div>
   <div class="hero-image">
-    <!-- Replace the div below with: <img src="your-photo.jpg" class="hero-image-main" alt="Bike and Beach holiday home"> -->
-    <div style="width:100%;height:100%;background:linear-gradient(160deg, #d4eaf0 0%, #a8cfd8 40%, #7ab5c2 100%);display:flex;align-items:center;justify-content:center;min-height:400px;">
-      <div style="text-align:center;color:#2a6f7f;opacity:0.6;">
-        <div style="font-size:4rem;">🏡</div>
-        <p style="font-size:0.85rem;margin-top:0.5rem;letter-spacing:0.08em;text-transform:uppercase;">Add your hero photo here</p>
-      </div>
-    </div>
+    <img src="images/View1.jpg" alt="Aerial view of Kaiteriteri beach">
     <div class="hero-badge">
       <div class="hero-badge-icon">🌿</div>
-      <div class="hero-badge-text">
-        <strong>Wetland Views</strong>
-        Peaceful garden setting with native birdlife
-      </div>
+      <div class="hero-badge-text"><strong>Wetland Views</strong>Peaceful garden setting with native birdlife</div>
     </div>
   </div>
 </section>
@@ -618,24 +244,24 @@
 <!-- PHOTO GRID -->
 <div class="photos">
   <div class="photo-cell">
-    <div class="photo-placeholder"><span>🛋️</span>Living Area</div>
-    <div class="photo-label">Living Room</div>
+    <img src="images/View2.jpg" alt="Kaiteriteri bay from above">
+    <div class="photo-label">Kaiteriteri Bay</div>
   </div>
   <div class="photo-cell">
-    <div class="photo-placeholder"><span>🛏️</span>Bedroom</div>
+    <img src="images/Diningroom.jpg" alt="Open plan dining and living">
+    <div class="photo-label">Open Plan Living</div>
+  </div>
+  <div class="photo-cell">
+    <img src="images/Bedroom1.jpg" alt="Master bedroom">
     <div class="photo-label">Master Bedroom</div>
   </div>
   <div class="photo-cell">
-    <div class="photo-placeholder"><span>🍳</span>Kitchen</div>
-    <div class="photo-label">Kitchen</div>
+    <img src="images/Gardenview1.jpg" alt="Garden and outdoor area">
+    <div class="photo-label">Garden & Deck</div>
   </div>
   <div class="photo-cell">
-    <div class="photo-placeholder"><span>🌿</span>Garden</div>
-    <div class="photo-label">Garden & Wetland View</div>
-  </div>
-  <div class="photo-cell">
-    <div class="photo-placeholder"><span>🚲</span>Bike Shed</div>
-    <div class="photo-label">Secure Bike Storage</div>
+    <img src="images/Kitchen_familyroom2.jpg" alt="Kitchen and family room">
+    <div class="photo-label">Kitchen & Family Room</div>
   </div>
 </div>
 
@@ -654,12 +280,27 @@
     <div class="feature-card">
       <div class="feature-icon">🛁</div>
       <div class="feature-title">2 Bathrooms + Separate Toilet</div>
-      <p class="feature-desc">Two full bathrooms plus a separate toilet — no morning queues for the whole group.</p>
+      <p class="feature-desc">Two full bathrooms plus a separate toilet — no morning queues even for the whole group.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">🌿</div>
-      <div class="feature-title">Garden & Wetland Views</div>
-      <p class="feature-desc">Step outside to a peaceful garden with views across to the wetlands. A tranquil backdrop to unwind after a day of adventure.</p>
+      <div class="feature-icon">🍳</div>
+      <div class="feature-title">Open Plan Kitchen & Living</div>
+      <p class="feature-desc">A generous open-plan kitchen, dining and family room flows out to the deck — perfect for groups who like to spread out and socialise.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">❄️</div>
+      <div class="feature-title">Heat Pump & Air Conditioning</div>
+      <p class="feature-desc">Stay comfortable year-round with heat pump air conditioning — cool in summer, warm on cooler evenings.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🪵</div>
+      <div class="feature-title">Two Outdoor Areas</div>
+      <p class="feature-desc">A main entertaining deck with garden and wetland views, plus a second sheltered deck at the rear — morning sun and afternoon shade.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚲</div>
+      <div class="feature-title">Secure Bike Storage</div>
+      <p class="feature-desc">A dedicated shed to store your bikes safely overnight — no need to bring them inside or leave them out.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🚗</div>
@@ -667,14 +308,53 @@
       <p class="feature-desc">Plenty of off-street parking for multiple vehicles — ideal for groups arriving from different directions.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">📶</div>
-      <div class="feature-title">WiFi Connected</div>
-      <p class="feature-desc">Stay connected with wireless internet — handy for checking in, planning your next adventure, or staying in touch with home.</p>
+      <div class="feature-icon">📺</div>
+      <div class="feature-title">Separate TV Lounge</div>
+      <p class="feature-desc">A dedicated TV room with large screen and comfortable leather sofas — great for evenings in or when the group wants to split up.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">🚲</div>
-      <div class="feature-title">Secure Bike Storage</div>
-      <p class="feature-desc">A dedicated shed to store your bikes safely overnight — no need to bring them inside or worry about leaving them out.</p>
+      <div class="feature-icon">📶</div>
+      <div class="feature-title">WiFi Connected</div>
+      <p class="feature-desc">Stay connected with wireless internet — handy for checking in, planning your next adventure, or keeping in touch with home.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BEDROOMS -->
+<section class="bedrooms-section" id="bedrooms">
+  <div class="section-header">
+    <p class="section-eyebrow">Bedrooms</p>
+    <h2>Four comfortable <em>rooms</em></h2>
+    <p style="margin-top:1rem;color:#666;font-size:0.95rem;line-height:1.7;">Sleeping 9 comfortably across four well-appointed bedrooms — a mix of configurations to suit all group types.</p>
+  </div>
+  <div class="bedrooms-grid">
+    <div class="bedroom-card">
+      <img src="images/Bedroom1.jpg" alt="Master bedroom with ensuite">
+      <div class="bedroom-card-body">
+        <div class="bedroom-card-title">Master Bedroom</div>
+        <p class="bedroom-card-desc">King bed with ensuite and walk-in wardrobe. Lovely garden outlook.</p>
+      </div>
+    </div>
+    <div class="bedroom-card">
+      <img src="images/Bedroom3.jpg" alt="Bedroom 2 queen">
+      <div class="bedroom-card-body">
+        <div class="bedroom-card-title">Bedroom 2</div>
+        <p class="bedroom-card-desc">Queen bed with garden views and access to the deck.</p>
+      </div>
+    </div>
+    <div class="bedroom-card">
+      <img src="images/bedroom4.jpg" alt="Bedroom 3 with deck access">
+      <div class="bedroom-card-body">
+        <div class="bedroom-card-title">Bedroom 3</div>
+        <p class="bedroom-card-desc">Spacious room with two singles and a sofa — ideal for families or friends needing flexible sleeping options. Opens to the deck.</p>
+      </div>
+    </div>
+    <div class="bedroom-card">
+      <img src="images/Bedroom2.jpg" alt="Twin bedroom">
+      <div class="bedroom-card-body">
+        <div class="bedroom-card-title">Bedroom 4</div>
+        <p class="bedroom-card-desc">Twin beds — perfect for kids or friends sharing.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -690,27 +370,43 @@
     <div class="amenity"><span class="amenity-icon">👥</span> Sleeps 9</div>
     <div class="amenity"><span class="amenity-icon">🚿</span> 2 Bathrooms</div>
     <div class="amenity"><span class="amenity-icon">🚽</span> Separate Toilet</div>
+    <div class="amenity"><span class="amenity-icon">❄️</span> Heat Pump / A/C</div>
     <div class="amenity"><span class="amenity-icon">📶</span> WiFi</div>
     <div class="amenity"><span class="amenity-icon">🚗</span> Ample Parking</div>
     <div class="amenity"><span class="amenity-icon">🚲</span> Bike Storage Shed</div>
     <div class="amenity"><span class="amenity-icon">🌿</span> Wetland Views</div>
+    <div class="amenity"><span class="amenity-icon">🪵</span> Two Outdoor Decks</div>
     <div class="amenity"><span class="amenity-icon">🍳</span> Fully Equipped Kitchen</div>
+    <div class="amenity"><span class="amenity-icon">🍽️</span> Dishwasher</div>
     <div class="amenity"><span class="amenity-icon">☕</span> Tea & Coffee</div>
     <div class="amenity"><span class="amenity-icon">🧺</span> Laundry Facilities</div>
-    <div class="amenity"><span class="amenity-icon">🌞</span> Outdoor Garden Area</div>
+    <div class="amenity"><span class="amenity-icon">📺</span> Smart TV</div>
+    <div class="amenity"><span class="amenity-icon">🌞</span> Outdoor Dining</div>
   </div>
 </section>
+
+<!-- OUTDOOR PHOTOS -->
+<div class="outdoor-section">
+  <div class="outdoor-cell">
+    <img src="images/Gardenview2.jpg" alt="Main deck and garden">
+    <div class="outdoor-label">Main Deck & Garden</div>
+  </div>
+  <div class="outdoor-cell">
+    <img src="images/Gardenview3.jpg" alt="Outdoor dining area">
+    <div class="outdoor-label">Outdoor Dining</div>
+  </div>
+  <div class="outdoor-cell">
+    <img src="images/Deck2.jpg" alt="Second deck morning sun">
+    <div class="outdoor-label">Second Deck — Morning Sun</div>
+  </div>
+</div>
 
 <!-- LOCATION -->
 <section class="location-section" id="location">
   <div class="location-text">
     <p class="section-eyebrow">Location</p>
     <h2>Kaiteriteri — <em>paradise</em> found</h2>
-    <p style="margin-top:1rem;line-height:1.75;color:#555;font-size:0.95rem;">
-      Kaiteriteri is one of New Zealand's most beloved coastal villages, 
-      nestled at the gateway to Abel Tasman National Park. 
-      Bike &amp; Beach puts you right in the heart of it all.
-    </p>
+    <p style="margin-top:1rem;line-height:1.75;color:#555;font-size:0.95rem;">Kaiteriteri is one of New Zealand's most beloved coastal villages, nestled at the gateway to Abel Tasman National Park. Bike &amp; Beach puts you right in the heart of it all.</p>
     <div class="location-facts">
       <div class="location-fact">
         <span class="location-fact-icon">🏖️</span>
@@ -742,12 +438,89 @@
       </div>
     </div>
   </div>
-  <div class="location-map">
-    <div class="map-placeholder">
-      <span>📍</span>
-      <p style="font-size:1rem;font-weight:500;color:#1a3f48;margin-bottom:0.5rem;">Kaiteriteri, Nelson-Tasman</p>
-      <p>Nelson-Tasman Region, New Zealand</p>
-      <a href="https://maps.google.com/?q=Kaiteriteri,Nelson,New+Zealand" target="_blank">Open in Google Maps</a>
+  <div class="location-image">
+    <img src="images/View3.jpg" alt="Kaiteriteri beach panorama">
+  </div>
+</section>
+
+<!-- VIEWS STRIP -->
+<div class="views-strip">
+  <div class="view-cell">
+    <img src="images/view5.jpg" alt="Kaiteriteri beach at sunset">
+    <div class="view-label">Kaiteriteri Beach at Sunset</div>
+  </div>
+  <div class="view-cell">
+    <img src="images/view4.jpg" alt="Abel Tasman coastline">
+    <div class="view-label">Abel Tasman Coastline</div>
+  </div>
+</div>
+
+<!-- RATES -->
+<section class="rates-section" id="rates">
+  <div class="section-header">
+    <p class="section-eyebrow">Rates</p>
+    <h2>Simple, <em>transparent</em> pricing</h2>
+    <p style="margin-top:1rem;color:#666;font-size:0.95rem;line-height:1.7;">All rates are per night for the whole property. A minimum 3-night stay applies across all periods.</p>
+  </div>
+  <div class="rates-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Period</th>
+          <th>Dates</th>
+          <th>Nightly Rate</th>
+          <th>Min Stay</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="rate-highlight">
+          <td>🎄 Christmas & New Year</td>
+          <td>20 Dec – 10 Jan</td>
+          <td><span class="rate-price">$XXX</span></td>
+          <td>3 nights</td>
+        </tr>
+        <tr>
+          <td>🐣 Easter & School Holidays</td>
+          <td>As per NZ school calendar</td>
+          <td><span class="rate-price">$XXX</span></td>
+          <td>3 nights</td>
+        </tr>
+        <tr>
+          <td>☀️ Peak Summer</td>
+          <td>Nov – Apr (excl. above)</td>
+          <td><span class="rate-price">$XXX</span></td>
+          <td>3 nights</td>
+        </tr>
+        <tr>
+          <td>🍂 Shoulder Season</td>
+          <td>May & October</td>
+          <td><span class="rate-price">$XXX</span></td>
+          <td>3 nights</td>
+        </tr>
+        <tr>
+          <td>🌧️ Off Peak</td>
+          <td>June – September</td>
+          <td><span class="rate-price">$XXX</span></td>
+          <td>3 nights</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="rates-notes">
+    <div class="rates-note">
+      <div class="rates-note-icon">🧹</div>
+      <h4>Cleaning Fee</h4>
+      <p>A cleaning fee applies and will be confirmed with your quote — the amount varies depending on length of stay and group size.</p>
+    </div>
+    <div class="rates-note">
+      <div class="rates-note-icon">📅</div>
+      <h4>Minimum Stay</h4>
+      <p>A minimum 3-night stay applies across all seasons. Weekly rates are available — please enquire.</p>
+    </div>
+    <div class="rates-note">
+      <div class="rates-note-icon">💬</div>
+      <h4>How to Book</h4>
+      <p>Check availability on the calendar below, then use the enquiry form to confirm your dates. We'll respond promptly with a full quote.</p>
     </div>
   </div>
 </section>
@@ -760,11 +533,10 @@
   </div>
   <div class="calendar-container">
     <div class="calendar-notice">
-      📅 &nbsp;Green = available &nbsp;|&nbsp; Booked dates will appear blocked. Enquire below to confirm and reserve your stay.
+      📅 &nbsp;Booked dates will appear blocked. Enquire below to confirm and reserve your stay.
     </div>
     <div class="calendar-embed">
-    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Pacific%2FAuckland&showPrint=0&src=YmlrZWFuZGJlYWNoa2FpdGVyaUBnbWFpbC5jb20&src=NTJhZWJiYzAwYTRjMTUxMmJhMzgwODQ0ZmY3MGM0ODAyZGQxNDcyNGRjY2EzZTNiMWUyZTliMTg4NWNlYjNhY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4ubmV3X3plYWxhbmQjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y19jbGFzc3Jvb21kNDRmMTdjN0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23039be5&color=%233f51b5&color=%230b8043&color=%23b80672" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-
+      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Pacific%2FAuckland&showPrint=0&src=YmlrZWFuZGJlYWNoa2FpdGVyaUBnbWFpbC5jb20&src=NTJhZWJiYzAwYTRjMTUxMmJhMzgwODQ0ZmY3MGM0ODAyZGQxNDcyNGRjY2EzZTNiMWUyZTliMTg4NWNlYjNhY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4ubmV3X3plYWxhbmQjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y19jbGFzc3Jvb21kNDRmMTdjN0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23039be5&color=%233f51b5&color=%230b8043&color=%23b80672" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
     </div>
   </div>
 </section>
@@ -773,65 +545,31 @@
 <section class="contact-section" id="contact">
   <div class="contact-text">
     <p class="section-eyebrow" style="color:var(--warm);margin-bottom:0.8rem;">
-      <span style="display:inline-block;width:1.5rem;height:1px;background:var(--warm);vertical-align:middle;margin-right:0.6rem;"></span>
-      Get in Touch
+      <span style="display:inline-block;width:1.5rem;height:1px;background:var(--warm);vertical-align:middle;margin-right:0.6rem;"></span>Get in Touch
     </p>
     <h2>Ready to <em>book?</em></h2>
-    <p style="margin-top:1rem;">
-      We'd love to host you at Bike &amp; Beach. 
-      Send us a message with your preferred dates and we'll get back to you promptly.
-    </p>
+    <p style="margin-top:1rem;">We'd love to host you at Bike &amp; Beach. Send us a message with your preferred dates and we'll get back to you promptly with a full quote.</p>
     <div class="contact-details">
-      <div class="contact-item">
-        <span>📧</span>
-        <a href="mailto:bikeandbeachkaiteri@gmail.com">bikeandbeachkaiteri@gmail.com</a>
-      </div>
-      <div class="contact-item">
-        <span>📍</span>
-        <span>Kaiteriteri, Nelson-Tasman, New Zealand</span>
-      </div>
+      <div class="contact-item"><span>📧</span><a href="mailto:bikeandbeachkaiteri@gmail.com">bikeandbeachkaiteri@gmail.com</a></div>
+      <div class="contact-item"><span>📍</span><span>Kaiteriteri, Nelson-Tasman, New Zealand</span></div>
     </div>
   </div>
   <div class="contact-form">
     <h3>Enquire about your stay</h3>
     <div class="form-row">
-      <div class="form-group">
-        <label>First Name</label>
-        <input type="text" placeholder="Jane">
-      </div>
-      <div class="form-group">
-        <label>Last Name</label>
-        <input type="text" placeholder="Smith">
-      </div>
+      <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane"></div>
+      <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
     </div>
-    <div class="form-group">
-      <label>Email Address</label>
-      <input type="email" placeholder="jane@email.com">
-    </div>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@email.com"></div>
     <div class="form-row">
-      <div class="form-group">
-        <label>Check-in Date</label>
-        <input type="date">
-      </div>
-      <div class="form-group">
-        <label>Check-out Date</label>
-        <input type="date">
-      </div>
+      <div class="form-group"><label>Check-in Date</label><input type="date"></div>
+      <div class="form-group"><label>Check-out Date</label><input type="date"></div>
     </div>
     <div class="form-group">
       <label>Number of Guests</label>
-      <select>
-        <option>1–2 guests</option>
-        <option>3–4 guests</option>
-        <option>5–6 guests</option>
-        <option>7–8 guests</option>
-        <option>9 guests</option>
-      </select>
+      <select><option>1–2 guests</option><option>3–4 guests</option><option>5–6 guests</option><option>7–8 guests</option><option>9 guests</option></select>
     </div>
-    <div class="form-group">
-      <label>Message</label>
-      <textarea placeholder="Tell us about your group, any questions, or special requirements…"></textarea>
-    </div>
+    <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your group, any questions, or special requirements…"></textarea></div>
     <button class="btn-submit" onclick="handleEnquiry()">Send Enquiry</button>
   </div>
 </section>
@@ -843,13 +581,9 @@
 </footer>
 
 <script>
-  // Navbar scroll effect
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 30);
-  });
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 30); });
 
-  // Enquiry form handler - opens mailto with details
   function handleEnquiry() {
     const name = document.querySelector('input[placeholder="Jane"]').value;
     const email = document.querySelector('input[type="email"]').value;
@@ -857,35 +591,16 @@
     const checkout = document.querySelectorAll('input[type="date"]')[1].value;
     const guests = document.querySelector('select').value;
     const message = document.querySelector('textarea').value;
-
     const subject = encodeURIComponent('Bike & Beach Enquiry' + (checkin ? ' — ' + checkin : ''));
-    const body = encodeURIComponent(
-      'Name: ' + (name || 'Not provided') + '\n' +
-      'Email: ' + (email || 'Not provided') + '\n' +
-      'Check-in: ' + (checkin || 'Not specified') + '\n' +
-      'Check-out: ' + (checkout || 'Not specified') + '\n' +
-      'Guests: ' + guests + '\n\n' +
-      'Message:\n' + (message || 'No message provided')
-    );
-
+    const body = encodeURIComponent('Name: ' + (name||'Not provided') + '\nEmail: ' + (email||'Not provided') + '\nCheck-in: ' + (checkin||'Not specified') + '\nCheck-out: ' + (checkout||'Not specified') + '\nGuests: ' + guests + '\n\nMessage:\n' + (message||'No message provided'));
     window.location.href = 'mailto:bikeandbeachkaiteri@gmail.com?subject=' + subject + '&body=' + body;
   }
 
-  // Scroll reveal animation
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
   }, { threshold: 0.1 });
-
-  document.querySelectorAll('.feature-card, .amenity, .location-fact').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
+  document.querySelectorAll('.feature-card, .amenity, .location-fact, .bedroom-card, .rates-note').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.5s ease, transform 0.5s ease'; observer.observe(el);
   });
 </script>
 </body>
